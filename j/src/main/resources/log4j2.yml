@@ -1,0 +1,42 @@
+---
+Configuration:
+  status: trace
+  name: YAMLConfig
+  properties:
+    property:
+      name: filename
+      value: target/test-yaml.log
+  thresholdFilter:
+    level: trace
+  appenders:
+    Syslog:
+      name: "RFC5424"
+      format: "RFC5424"
+      host: "127.0.0.1"
+      protocol: "UDP"
+      port: 514
+      appName: "koolJava"
+      includeMDC: false
+      facility: "LOCAL6"
+      newLineEscape: "#010"
+      charset: "UTF-8"
+      LoggerFields:
+        KeyValuePair: !!pairs
+          - key: priority
+            value: "%p"
+          - key: category
+            value: "%c{0}"
+          - key: pid
+            value: "%pid"
+          - key: traceSpanId
+            value: "%X{traceId}/%X{spanId}"
+          - key: exception
+            value: "%ex"
+  Loggers:
+    Root:
+      level: trace
+      AppenderRef:
+        ref: RFC5424
+    Logger:
+      - name: mylogger
+        level: TRACE
