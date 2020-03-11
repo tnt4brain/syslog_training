@@ -6,51 +6,46 @@ import org.apache.logging.log4j.LogManager;
 
 import java.util.Random;
 
-public class TestService {
-    private Logger logger = LogManager.getLogger("mylogger");
-    private String[] messages = new String[] {
-        "Hello, World",
-        "Goodbye Cruel World",
-        "You had me at hello"
-    };
+public class LogService {
+    private String[] messages;
+    private Logger logger = LogManager.getLogger(LogService.class);
     private Random rand = new Random();
 
     public void setMessages(String[] messages) {
-        logger.traceEntry(new SimpleMessage(messages[0]));
+        logger.entry();
         this.messages = messages;
         logger.traceExit();
     }
 
     public String[] getMessages() {
-        logger.traceEntry();
-        return logger.traceExit(messages);
+        logger.entry();
+        return logger.exit(messages);
     }
 
     public String retrieveMessage() {
-        logger.entry();
+        logger.entry("retrieveMessage");
         String testMsg = getMessage(getKey());
         return logger.exit(testMsg);
     }
 
     public void exampleException() {
-        logger.entry();
         try {
             logger.error("An exception should have been thrown");
             String msg = messages[messages.length];
         } catch (Exception ex) {
             logger.catching(ex);
         }
-        logger.exit();
+        logger.exit("Leaving....");
     }
 
     public String getMessage(int key) {
-        logger.entry(key);
+        logger.entry("getMessage");
         String value = messages[key];
         return logger.exit(value);
     }
 
     private int getKey() {
-        logger.entry();
+        logger.entry("getKey");
         int key = rand.nextInt(messages.length);
         return logger.exit(key);
     }

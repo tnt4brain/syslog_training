@@ -32,6 +32,8 @@ Configuration:
             value: "%X{traceId}/%X{spanId}"
           - key: exception
             value: "%ex"
+          - key: override
+            value: "yes"
   Loggers:
     Root:
       level: TRACE
