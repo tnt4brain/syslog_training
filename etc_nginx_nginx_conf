@@ -1,0 +1,4 @@
+# Put this line into "http" context
+# http {
+#   access_log syslog:server=127.0.0.1:514,facility=local7,tag=nginx,severity=info combined;
+#}

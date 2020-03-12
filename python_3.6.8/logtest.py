@@ -25,7 +25,7 @@ class OneLineExceptionFormatter(logging.Formatter):
         Format an exception so that it prints on a single line.
         """
         result = super(OneLineExceptionFormatter, self).formatException(exc_info)
-        return repr(result).replace('\\n', '#010').replace('    ','#012')  # or format into one line however you want to
+        return repr(result).replace('\\n', '#010') # or format into one line however you want to
 
     def format(self, record):
         z = super(OneLineExceptionFormatter, self).format(record)
@@ -71,6 +71,7 @@ if __name__=='__main__':
     #logger.warning('This is a warning message')
     #logger.error('This is an error message')
     #logger.critical('This is a critical error message')
+    logger.warning('{"mydata": "val1", "mydata2": ["val2","val3"]}')
     try:
         recursive(0)
     except Exception as e:

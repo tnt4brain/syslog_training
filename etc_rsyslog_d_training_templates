@@ -1,0 +1,25 @@
+template(name="tpl1" type="list") {
+ constant(value="Exception: '")
+ property(name="STRUCTURED-DATA")
+ constant(value="', ")
+ property(name="timereported" dateFormat="rfc3339" caseConversion="lower")
+ constant(value="\n")
+ constant(value="12\n")
+}
+
+template(name="tpl2" type="list") {
+ constant(value="Exception: '")
+ property(name="$!data2")
+ constant(value="', ")
+ property(name="timereported" dateFormat="rfc3339" caseConversion="lower")
+ constant(value="01\n")
+}
+
+template(name="tpl1" type="list") {
+ constant(value="Exception: '")
+ property(name="STRUCTURED-DATA")
+ constant(value="', ")
+ property(name="timereported" dateFormat="rfc3339" caseConversion="lower")
+ constant(value="\n")
+ constant(value="13\n")
+}
